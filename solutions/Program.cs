@@ -32,7 +32,7 @@ namespace solutions
             //char ch = Console.ReadKey().KeyChar;
             //Console.WriteLine();
 
-            sumSquareNumbers();
+            sumOddNumber();
             //sortLetters(input1);
             //dynamic result = isAlaphabet(ch);
 
@@ -40,6 +40,8 @@ namespace solutions
 
             Console.ReadLine();
         }
+
+        //Starred questions need improvement
 
 
         // 1. Write a C# Sharp program to compute the sum of the two numerical values.
@@ -63,7 +65,7 @@ namespace solutions
             (51 - Math.Abs(n1));
 
 
-        // 3. Write a C# Sharp program to check two given integers, and return true if one of
+        //*3. Write a C# Sharp program to check two given integers, and return true if one of
         // them is 30 or if their sum is 30.
         static bool ifNumberEqualTo30(int n1, int n2)
         =>
@@ -79,13 +81,13 @@ namespace solutions
 
 
 
-        // 5. Write a C# Sharp program to create a string where 'if' is added to the front of
+        //*5. Write a C# Sharp program to create a string where 'if' is added to the front of
         // a given string. If the string already begins with 'if', return it unchanged.
         static string startWithIfPrefix(string input)
         =>
             input.StartsWith("if") ?
             input :
-            string.Concat("if", " ", input);
+            string.Concat("if ", input);
 
 
 
@@ -308,7 +310,7 @@ namespace solutions
            n1 > 0 ? 1 : (n1 < 0 ? -1 : 0);
 
 
-        //7. Write a C# Sharp program to accept a person's height in centimeters and categorize
+        //*7. Write a C# Sharp program to accept a person's height in centimeters and categorize
         //them according to their height.
         static string categorizeHeight(int height)
         =>
@@ -337,7 +339,7 @@ namespace solutions
         }
 
 
-        //9. Write a C# Sharp program to accept a coordinate point in an XY coordinate
+        //*9. Write a C# Sharp program to accept a coordinate point in an XY coordinate
         //system and determine in which quadrant the coordinate point lies.
         static string coordinateXY(int x, int y)
         {
@@ -692,7 +694,7 @@ namespace solutions
             "Invalid month number";
 
 
-        //24. Write a C# Sharp program that calculates the area of geometrical shapes using a menu-driven approach.
+        //*24. Write a C# Sharp program that calculates the area of geometrical shapes using a menu-driven approach.
         static void calculateGeometricalShape()
         {
             Console.WriteLine("Geometry Calculator");
@@ -918,7 +920,7 @@ namespace solutions
             Console.WriteLine($"After sorting the string appears like: {sortedString}");
         }
 
-        //12. Write a C# Sharp program to read a string through the
+        //*12. Write a C# Sharp program to read a string through the
         //keyboard and sort it using bubble sort.
         static void sortStringByBubble()
         {
@@ -973,7 +975,7 @@ namespace solutions
         }
 
 
-        //13. Write a program in C# Sharp to extract a substring from a given string
+        //*13. Write a program in C# Sharp to extract a substring from a given string
         //without using the library function.
         static void extractSubstring()
         {
@@ -1032,13 +1034,13 @@ namespace solutions
         //characters with uppercase and vice-versa.
         static void convertCase(string input)
         {
-            string converter = new string(input.Select((x) =>
+            string converter = String.Concat(input.Select((x) =>
                                    (
                                         char.IsLower(x) ?
                                         char.ToUpper(x) :
                                         char.ToLower(x)
                                     )
-                                ).ToArray());
+                                ));
             Console.WriteLine($"After conversion, the string is: {converter}");
 
         }
@@ -1214,6 +1216,7 @@ namespace solutions
 
         }
 
+        //*
         static void compareSubstrings(
             string str1,
             string str2,
@@ -1235,7 +1238,7 @@ namespace solutions
             Console.WriteLine();
         }
 
-        //23. Write a C# Sharp program to compare two substrings using different
+        //*23. Write a C# Sharp program to compare two substrings using different
         //cultures and ignore the substring case.
         public static void compartionTurkeyWord()
         {
@@ -1317,7 +1320,7 @@ namespace solutions
 
 
 
-        //25. Write a C# Sharp program to compare four sets of words by using each
+        //*25. Write a C# Sharp program to compare four sets of words by using each
         //member of the string comparison enumeration.The comparisons use the
         //conventions of the English(United States) and Sami(Upper Sweden)
         //cultures.
@@ -1330,13 +1333,13 @@ namespace solutions
             CultureInfo samiCulture = new CultureInfo("se-SE");
 
             StringComparison[] comparisons = {
-            StringComparison.CurrentCulture,
-            StringComparison.CurrentCultureIgnoreCase,
-            StringComparison.InvariantCulture,
-            StringComparison.InvariantCultureIgnoreCase,
-            StringComparison.Ordinal,
-            StringComparison.OrdinalIgnoreCase
-        };
+                StringComparison.CurrentCulture,
+                StringComparison.CurrentCultureIgnoreCase,
+                StringComparison.InvariantCulture,
+                StringComparison.InvariantCultureIgnoreCase,
+                StringComparison.Ordinal,
+                StringComparison.OrdinalIgnoreCase
+            };
 
             Console.WriteLine("Comparison Results:");
 
@@ -1407,44 +1410,40 @@ namespace solutions
         }
 
 
-        //5. Write a C# Sharp program to display the cube of an integer up to given number.
+        //*5. Write a C# Sharp program to display the cube of an integer up to given number.
         static void displayCubeForNumber()
         {
             Console.Write("Input number of terms: ");
             int numberOfTerms = int.Parse(Console.ReadLine());
 
-            List<int> cubes = Enumerable.Range(1, numberOfTerms).Select(x => x * x * x).ToList();
+            List<int> cubes = Enumerable
+                .Range(1, numberOfTerms)
+                .Select(x => x * x * x)
+                .ToList();
 
-            List<string> result = cubes
-                .Zip(cubes, (number, cube) => $"Number is: {number} and cube of {number} is: {cube}").ToList();
-
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
-            }
+             cubes
+                .Zip(cubes, (number, cube) => $"Number is: {number} and cube of {number} is: {cube}")
+                .ToList()
+                .ForEach(Console.WriteLine);
 
         }
 
 
-        //6. Write a program in C# Sharp to display the multiplication table of a given integer.
+        //*6. Write a program in C# Sharp to display the multiplication table of a given integer.
         static void multipTable()
         {
             Console.Write("Input the number (Table to be calculated) : ");
             int number = int.Parse(Console.ReadLine());
 
-            string[] table = Enumerable.Range(1, 10)
+            Enumerable.Range(1, 10)
             .Select(x => $"{number} X {x} = {number * x}")
-            .ToArray();
-
-            foreach (var item in table)
-            {
-                Console.WriteLine(item);
-            }
+            .ToList()
+            .ForEach(Console.WriteLine);
 
         }
 
 
-        //7. Write a program in C# Sharp to display the multiplication table vertically from 1 to n.
+        //*7. Write a program in C# Sharp to display the multiplication table vertically from 1 to n.
         static void multipTableVertically()
         {
             Console.Write("Input the number (Table to be calculated) : ");
@@ -1463,7 +1462,7 @@ namespace solutions
 
         }
 
-        //8. Write a C# Sharp program to display the n terms of odd natural numbers
+        //*8. Write a C# Sharp program to display the n terms of odd natural numbers
         //and their sums.
         static void sumOddNumber()
         {
@@ -1477,7 +1476,7 @@ namespace solutions
         }
 
 
-        //9. Write a program in C# Sharp to display a right angle triangle with an
+        //*9. Write a program in C# Sharp to display a right angle triangle with an
         //asterisk.
         static void printTriangle()
         {
@@ -1485,7 +1484,7 @@ namespace solutions
             int rows = int.Parse(Console.ReadLine());
 
             Enumerable.Range(1, rows)
-                .Select(row => new string('*', row))
+                .Select(row => string.Concat('*', row))
                 .ToList()
                 .ForEach(Console.WriteLine);
         }
@@ -1651,7 +1650,7 @@ namespace solutions
         }
 
 
-        //19. Write a program in C# Sharp to display the n terms of harmonic series and
+        //*19. Write a program in C# Sharp to display the n terms of harmonic series and
         //their sum.
         static void calculateHarmonicSeries()
         {
@@ -1711,7 +1710,7 @@ namespace solutions
 
         }
 
-        //22. Write a program in C# Sharp to print Floyd's Triangle.
+        //*22. Write a program in C# Sharp to print Floyd's Triangle.
         static void printFloydsTriangle()
         {
             Console.Write("Enter the number of rows: ");
